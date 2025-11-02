@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 16:06:29 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/02 01:08:44 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/02 03:29:24 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ typedef struct s_map
     int *cols;
 } t_map;
 
-
 typedef struct s_mlx
 {
     void *mlx;
@@ -58,7 +57,6 @@ typedef struct s_mlx
     int win_width;
     int win_height;
 } t_mlx;
-
 
 typedef struct s_game
 {
@@ -70,5 +68,17 @@ typedef struct s_game
     t_map map;
 } t_game;
 
+/*------ parser ------*/
+void parser(t_game *game);
+
+/*------ validator ------*/
+void validate_textures(t_game *game);
+void validate_colors(t_game *game);
+void validate_map(t_game *game);
+void validator(t_game *game);
+
+/*------ exit ------*/
+static void free_game(t_game *game);
+void exit_program(t_game *game, char *msg, int status);
 
 #endif
