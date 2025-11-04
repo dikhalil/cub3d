@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 16:06:29 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/02 03:29:24 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/04 21:40:05 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <fcntl.h>
-#include <mlx.h>
+#include "../minilibx-linux/mlx.h"
 #include "../libft/libft.h"
 
 typedef struct s_color
@@ -68,17 +68,21 @@ typedef struct s_game
     t_map map;
 } t_game;
 
+int is_spaces(char *line);
+
 /*------ parser ------*/
 void parser(t_game *game);
 
 /*------ validator ------*/
+int is_texture(char *line);
 void validate_textures(t_game *game);
+int is_color_chr(char *line);
 void validate_colors(t_game *game);
+int is_map_chr(char c);
 void validate_map(t_game *game);
 void validator(t_game *game);
 
 /*------ exit ------*/
-static void free_game(t_game *game);
-void exit_program(t_game *game, char *msg, int status);
+void exit_game(t_game *game, char *msg, int status);
 
 #endif

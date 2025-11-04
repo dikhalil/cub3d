@@ -6,15 +6,20 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 03:01:36 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/02 03:02:46 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/04 23:33:34 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int is_color_chr(char c)
+int is_color_chr(char *line)
 {
-    return (c == 'F' || c == 'C');
+    int i;
+
+    i = 0;
+    while (line[i] == ' ' || line[i] == '\t')
+        i++;
+    return (line[i] == 'F' || line[i] == 'C');
 }
 
 static int	is_number(char **str)
@@ -24,12 +29,14 @@ static int	is_number(char **str)
 
 	i = 0;
     j = 0;
+    if (!str || !*str)
+        return (0);
     while (str[i])
     { 
         j = 0;
-        while (str[i][j] == ' ' || str[i][j] == '\t')
-            j++;
-        if (!str[i][j])
+        if (!str[i][0])
+            return (0);
+        if (str[i][j] == ' ' || str[i][j] == '\t')
             return (0);
         if (str[i][j] == '-' || str[i][j] == '+')
             j++;
@@ -46,21 +53,26 @@ static int	is_number(char **str)
 	return (1);
 }
 
-static t_color *get_color(t_game *game, char c)
+static t_color *get_color(t_game *game, char *line)
 {
-    if (c == 'F')
+    if (*line == 'F')
         return (&game->floor);
     return (&game->ceiling);
 }
-
 static void set_color_value(t_game *game, char *line)
 {
     t_color *color;
     char **rgb;
     int i;
-
-    color = get_color(game, line[0]);
-    rgb = ft_split(line + 1, ',');
+    
+    i = 0;
+    while (line[i] && (line[i] == ' ' || line[i] == '\t'))
+        i++;
+    color = get_color(game, line + i);
+    i++;
+    while (line[i] && (line[i] == ' ' || line[i] == '\t'))
+        i++;
+    rgb = ft_split(line + i, ',');
     if (!rgb)
         exit_game(game, "Error\nMalloc faild for colors", 1);
     if(!rgb[0] || !rgb[1] || !rgb[2] || rgb[3] || !is_number(rgb))
@@ -77,26 +89,39 @@ static void set_color_value(t_game *game, char *line)
         color->b < 0 || color->b > 255)
         exit_game(game, "Error\nColor value out of range", 1);
     color->set++;
+    if (color->set > 1)
+		exit_game(game, "Error\nDuplicate color", 1);
 }
 
 void validate_colors(t_game *game)
 {
     int i;
     char **line;
+    int map_start;
 
     i = 0;
+    map_start = 0;
     line = game->map.grid;
     while (line[i])
     {
-        if (is_color_chr(line[i][0]))
+        if (!line[i][0] || is_spaces(line[i])) 
+        {
+            i++;
+            continue;
+        }
+        if (is_color_chr(line[i]))
+        {
             set_color_value(game, line[i]);
-        else if (is_map_char(line[i][0]))
-            break;
-        else if (!is_texture(line[i]) && line[i][0])
+            if (map_start)
+                exit_game(game, "Error\nColors must be set before the map", 1);
+        }
+        else if (!is_texture(line[i]) && is_map_chr(line[i][0]))
+            map_start = 1;
+        else if (!is_texture(line[i]))
             exit_game(game, "Error\nInvalid line in map", 1);
         i++;
     }
-    if (game->ceiling.set  != 1|| game->floor.set != 1)
-        exit_game(game, "Error\nMissing floor or ceiling color", 1);
+    if (game->ceiling.set != 1 || game->floor.set != 1)
+        exit_game(game, "Error\nFloor and ceiling colors must set once", 1);
 }
 

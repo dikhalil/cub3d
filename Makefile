@@ -1,14 +1,14 @@
 # Compiler and flags
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-NAME = so_long
+NAME = cub3d
 
 # Libft
 LIBFT_PATH = ./libft
 LIBFT = $(LIBFT_PATH)/libft.a
 
 # MLX
-CMLXFLAG = -lmlx -lX11 -lXext -lm
+CMLXFLAG = -L./minilibx-linux -lmlx -lXext -lX11 -lm -lbsd
 
 # Include
 INCLUDE = -I./include

@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 17:02:11 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/01 22:41:31 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/04 19:10:15 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static int	ft_fill_words(char const *s, char **result, char c)
 			result[i] = ft_substr(start, 0, s - start);
 			if (!result[i])
 			{
-				ft_free(result);
+				free_split(result);
 				return (0);
 			}
 			i++;
