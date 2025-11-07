@@ -17,6 +17,7 @@ INCLUDE = -I./include
 SRCS =  src/main.c \
 		src/exit.c \
 		src/parser.c \
+		src/validator/flood_fill.c \
 		src/validator/validator_map.c \
 		src/validator/validator_colors.c \
 		src/validator/validator_textures.c \

@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 16:06:29 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/04 21:40:05 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/07 16:10:17 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,9 @@ void validate_textures(t_game *game);
 int is_color_chr(char *line);
 void validate_colors(t_game *game);
 int is_map_chr(char c);
+void free_map(char **map);
+char **copy_map(char **map, int rows);
+int flood_fill(char **map, int x, int y, int rows);
 void validate_map(t_game *game);
 void validator(t_game *game);
 

@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 03:04:26 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/04 23:14:51 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/07 16:08:11 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,50 +49,23 @@ static int is_valid_content(t_player *player, char **line)
     return (count == 1);
 }
 
-static int is_valid_cell(char **line, int i, int j, int rows)
+static int is_closed(t_game *game, char **line)
 {
-    if (!line[i])
-        return (0);
-    if (i == 0 || i == (rows - 1) || j == 0 || j == ((int)ft_strlen(line[i]) - 1))
-        return (0);
-    if (!line[i - 1] || !line[i + 1])
-        return (0);
-     if (j >= (int)ft_strlen(line[i - 1]) || j >= (int)ft_strlen(line[i + 1]))
-        return (0);
-    if (line[i - 1][j] == ' ' || line[i + 1][j] == ' ' ||
-        line[i][j - 1] == ' ' || line[i][j + 1] == ' ')
-        return (0);
-    return (1);
-}
-
-static int is_closed(char **line)
-{
-    int i;
-    int j;
+    char **copy;
     int rows;
-    
-    i = 0;
-    j = 0;
+
     rows = 0;
     while (line[rows])
         rows++;
-    while (line[i])
+    copy = copy_map(line, rows);
+    if (!copy)
+    	exit_game(game, "Error\nMalloc failed in map copy", 1);
+    if (!flood_fill(copy, game->player.x, game->player.y, rows))
     {
-        if (!line[i][0] || is_spaces(line[i]))
-            return (0);
-        j = 0;
-        while (line[i][j])
-        {
-            if (line[i][j] != '1' && line[i][j] != ' ')
-            {
-             
-                if (!is_valid_cell(line, i, j, rows))
-                    return (0);
-            }
-            j++;
-        }
-        i++;
+        free_map(copy);
+        return (0);
     }
+    free_map(copy);
     return (1);
 }
 
@@ -110,6 +83,6 @@ void validate_map(t_game *game)
         exit_game(game, "Error\nMap is missing", 1);
     if (!is_valid_content(&game->player, line + i))
         exit_game(game, "Error\nInvalid content in map", 1);
-    if (!is_closed(line + i))
+    if (!is_closed(game, line + i))
         exit_game(game, "Error\nMap must be enclosed/surrounded by walls", 1);
 }
