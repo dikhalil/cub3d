@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 16:06:29 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/07 16:10:17 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/08 12:25:38 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <fcntl.h>
-#include "../minilibx-linux/mlx.h"
+#include <mlx.h>
 #include "../libft/libft.h"
 
 typedef struct s_color
@@ -37,16 +37,16 @@ typedef struct s_textures
 
 typedef struct s_player
 {
-    int x;     
-    int y;      
-    char dir; 
+    int x;
+    int y;
+    char dir;
 } t_player;
 
 typedef struct s_map
 {
     char *map_file;
-    char **grid;    
-    int rows;       
+    char **grid;
+    int rows;
     int *cols;
 } t_map;
 

@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 03:01:36 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/04 23:33:34 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/08 12:49:19 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	is_number(char **str)
     if (!str || !*str)
         return (0);
     while (str[i])
-    { 
+    {
         j = 0;
         if (!str[i][0])
             return (0);
@@ -64,14 +64,27 @@ static void set_color_value(t_game *game, char *line)
     t_color *color;
     char **rgb;
     int i;
-    
+	int j;
+	int count;
+
     i = 0;
+	j = 0;
+	count = 0;
     while (line[i] && (line[i] == ' ' || line[i] == '\t'))
         i++;
     color = get_color(game, line + i);
     i++;
     while (line[i] && (line[i] == ' ' || line[i] == '\t'))
-        i++;
+		i++;
+	j = i;
+	while (line[j])
+	{
+		if (line[j] == ',')
+			count++;
+		j++;
+	}
+	if (count != 2)
+       exit_game(game, "Error\nInvalid color format", 1);
     rgb = ft_split(line + i, ',');
     if (!rgb)
         exit_game(game, "Error\nMalloc faild for colors", 1);
@@ -104,7 +117,7 @@ void validate_colors(t_game *game)
     line = game->map.grid;
     while (line[i])
     {
-        if (!line[i][0] || is_spaces(line[i])) 
+        if (!line[i][0] || is_spaces(line[i]))
         {
             i++;
             continue;

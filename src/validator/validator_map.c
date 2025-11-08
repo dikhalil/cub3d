@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 03:04:26 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/07 16:08:11 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/08 12:53:44 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int is_map_chr(char c)
 {
     return (c == '0' || c == '1' ||
-            c == 'N' || c == 'S' || 
-            c == 'E' || c == 'W' || 
+            c == 'N' || c == 'S' ||
+            c == 'E' || c == 'W' ||
             c == ' ');
 }
 
@@ -46,7 +46,7 @@ static int is_valid_content(t_player *player, char **line)
         }
         i++;
     }
-    return (count == 1);
+    return (count);
 }
 
 static int is_closed(t_game *game, char **line)
@@ -83,6 +83,8 @@ void validate_map(t_game *game)
         exit_game(game, "Error\nMap is missing", 1);
     if (!is_valid_content(&game->player, line + i))
         exit_game(game, "Error\nInvalid content in map", 1);
+    if (is_valid_content(&game->player, line + i) != 1)
+        exit_game(game, "Error\nMap must contain one player", 1);
     if (!is_closed(game, line + i))
         exit_game(game, "Error\nMap must be enclosed/surrounded by walls", 1);
 }
