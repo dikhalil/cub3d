@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 03:04:26 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/08 12:53:44 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/26 01:27:37 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,33 @@ int is_map_chr(char c)
             c == 'N' || c == 'S' ||
             c == 'E' || c == 'W' ||
             c == ' ');
+}
+
+void set_player_position(t_player *player, char **line, int i, int j)
+{
+    player->pos_x = j + 0.5;
+    player->pos_y = i + 0.5;
+    if (line[i][j] == 'N')
+    {
+        player->dir_y = -1;
+        player->plane_x = 0.66;
+    }
+    else if (line[i][j] == 'S')
+    {
+        player->dir_y = 1;
+        player->plane_x = -0.66;
+    }
+    else if (line[i][j] == 'E')
+    {
+        player->dir_x = 1;
+        player->plane_y = 0.66;
+    }
+    else
+    {
+        player->dir_x = -1;
+        player->plane_y = -0.66;
+    }
+    
 }
 
 static int is_valid_content(t_player *player, char **line)
@@ -38,9 +65,8 @@ static int is_valid_content(t_player *player, char **line)
             if (line[i][j] != '1' && line[i][j] != ' ' && line[i][j] != '0')
             {
                 count++;
-                player->dir = line[i][j];
-                player->x = j;
-                player->y = i;
+                line[i][j] = '0';
+                set_player_position(player, line, i, j);
             }
             j++;
         }
@@ -60,12 +86,12 @@ static int is_closed(t_game *game, char **line)
     copy = copy_map(line, rows);
     if (!copy)
     	exit_game(game, "Error\nMalloc failed in map copy", 1);
-    if (!flood_fill(copy, game->player.x, game->player.y, rows))
+    if (!flood_fill(copy, game->player.pos_x, game->player.pos_y, rows))
     {
-        free_map(copy);
+        free_map_line(copy);
         return (0);
     }
-    free_map(copy);
+    free_map_line(copy);
     return (1);
 }
 

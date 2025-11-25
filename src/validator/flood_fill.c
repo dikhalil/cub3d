@@ -6,13 +6,13 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 16:08:27 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/07 16:10:12 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/25 22:45:47 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void free_map(char **map)
+void free_map_line(char **map)
 {
     int i;
     

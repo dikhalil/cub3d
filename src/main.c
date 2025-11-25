@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 16:20:48 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/04 21:54:03 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/25 23:23:49 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,7 @@ int main(int argc, char **argv)
     game.map.map_file = argv[1];
     parser(&game);
     validator(&game);
+    // render(&game);
+    free_game(&game);
     return (0);
 }

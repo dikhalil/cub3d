@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 22:02:58 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/04 23:01:06 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/25 23:22:58 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,11 @@ static void	set_texture_path(t_game *game, char *line)
 		exit_game(game, "Error\nMalloc faild for texture path", 1);
     if (**texture_path == '\0')
 		exit_game(game, "Error\nEmpty texture path", 1);
+    if (ft_strlen(*texture_path) < 4
+        || ft_strncmp(*texture_path + ft_strlen(*texture_path) - 4, ".xpm", 4))
+        exit_game(game, "Error\nTexture file must have a .xpm extension", 1);
+    if (access(*texture_path, F_OK) == -1)
+        exit_game(game, "Error\nTexture file does not exist", 1);
 }
 
 void validate_textures(t_game *game)

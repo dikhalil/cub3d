@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 16:49:45 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/04 20:42:22 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/25 22:55:51 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ static void count_map_rows(t_map *map)
 
 static void allocate_map(t_game *game)
 {
-    game->map.grid = malloc(sizeof(char *) * (game->map.rows + 1));
+    game->map.grid = ft_calloc(game->map.rows + 1, sizeof(char *));
     if (!game->map.grid)
-        exit_game(NULL, "Error\nMalloc failed for map grid", 1);
-    game->map.cols = malloc(sizeof(int) * game->map.rows);
+        exit_game(game, "Error\nMalloc failed for map grid", 1);
+    game->map.cols = ft_calloc(game->map.rows, sizeof(int));
     if (!game->map.cols)
         exit_game(game, "Error\nMalloc failed for map cols", 1);
 }
-#include <stdio.h>
+
 static void	read_map(t_game *game)
 {
     int fd;
