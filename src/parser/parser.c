@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 16:49:45 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/27 16:18:58 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/27 23:29:00 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,22 @@
 
 static void check_extensions(char *file)
 {
-    size_t len;
-    
-    if (!file)
-        exit_game(NULL, "Error\nNo map file provided", 1);
-    len = ft_strlen(file);
-    if (len < 4 || ft_strcmp(file + len - 4, ".cub") != 0)
-        exit_game(NULL, "Error\nInvalid map file extension. Expected .cub", 1);    
+	size_t	len;
+	char	*last_slash;
+	char	*filename;
+
+	if (!file)
+		exit_game(NULL, "Error\nNo map file provided", 1);
+	len = ft_strlen(file);
+	last_slash = ft_strrchr(file, '/');
+	if (last_slash)
+		filename = last_slash + 1;
+	else
+		filename = file;
+	if (ft_strcmp(filename, ".cub") == 0)
+		exit_game(NULL, "Error\nMap file name is missing", 1);
+	if (len < 5 || ft_strcmp(file + len - 4, ".cub") != 0)
+		exit_game(NULL, "Error\nInvalid map file extension. Expected .cub", 1);
 }
 
 static void count_map_rows(t_map *map)

@@ -20,13 +20,19 @@ SRCS =  src/main.c \
         src/validator/flood_fill.c \
         src/validator/validator_map.c \
         src/validator/validator_colors.c \
+        src/validator/validator_colors_utils.c \
         src/validator/validator_textures.c \
+        src/validator/validator_textures_utils.c \
         src/validator/validator.c \
         src/render/draw.c \
         src/render/move.c \
         src/render/rotate.c \
         src/render/raycasting.c \
+        src/render/raycasting_init.c \
+        src/render/raycasting_texture.c \
+        src/render/raycasting_draw.c \
         src/render/hook.c \
+        src/render/mouse.c \
         src/render/render.c \
         src/utils/utils.c \
         src/cleanup/free.c

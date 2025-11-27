@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 16:06:29 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/27 16:48:46 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/27 22:58:31 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,9 @@
 
 # define WIDTH 800
 # define HEIGHT 600
-# define MOVE_SPEED 0.05        // ← Reduced from 0.15 (slower movement)
-# define ROT_SPEED 0.03         // ← Reduced from 0.08 (slower rotation)
-# define MOUSE_SENSITIVITY 0.001 // ← Reduced from 0.002 (slower mouse)
-
+# define MOVE_SPEED 0.05      
+# define ROT_SPEED 0.03         
+# define MOUSE_SENSITIVITY 0.001
 # define KEY_W 119
 # define KEY_A 97
 # define KEY_S 115
@@ -145,16 +144,24 @@ int is_spaces(char *line);
 void parser(t_game *game);
 
 /*------ validator ------*/
-int is_texture(char *line);
-void validate_textures(t_game *game);
-int is_color_chr(char *line);
-void validate_colors(t_game *game);
-int is_map_chr(char c);
-void free_map_line(char **map);
-char **copy_map(char **map, int rows);
-int flood_fill(char **map, int x, int y, int rows);
-void validate_map(t_game *game);
-void validator(t_game *game);
+int		is_texture(char *line);
+void	validate_textures(t_game *game);
+char	**get_texture(t_textures *textures, char *line);
+void	check_texture_file(t_game *game, char *path);
+void	set_texture_path(t_game *game, char *line);
+int		is_color_chr(char *line);
+void	validate_colors(t_game *game);
+int		is_number(char **str);
+int		count_commas(char *str);
+int		skip_to_rgb(char *line);
+void	validate_and_set_rgb(t_game *game, t_color *color, char **rgb);
+int		validate_single_number(char *str);
+int		is_map_chr(char c);
+void	free_map_line(char **map);
+char	**copy_map(char **map, int rows);
+int		flood_fill(char **map, int x, int y, int rows);
+void	validate_map(t_game *game);
+void	validator(t_game *game);
 
 /*------ render ------*/
 void render(t_game *game);
@@ -184,8 +191,18 @@ int		game_loop(t_game *game);
 int		close_window(t_game *game);
 
 /*------ raycasting ------*/
-void cast_rays(t_game *game);
-void load_textures(t_game *game);
+void	cast_rays(t_game *game);
+void	load_textures(t_game *game);
+void	init_ray(t_ray *ray, t_game *game, int x);
+void	set_step_and_side_dist(t_ray *ray, t_game *game);
+void	perform_dda(t_ray *ray, t_game *game);
+void	calculate_wall_distance(t_ray *ray);
+void	init_wall_data(t_wall *wall, t_ray *ray, t_game *game);
+void	select_texture(t_wall *wall, t_ray *ray);
+void	calculate_texture_x(t_wall *wall, t_game *game);
+void	put_pixel(t_game *game, int x, int y, int color);
+int		get_texture_color(t_game *game, int tex_num, int tex_x, int tex_y);
+void	draw_vertical_line(t_game *game, int x, t_wall *wall);
 
 /*------ utils ------*/
 int is_spaces(char *line);

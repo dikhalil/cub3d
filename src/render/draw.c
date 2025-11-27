@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 23:50:42 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/26 18:28:44 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/27 22:12:15 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,20 @@ void load_textures(t_game *game)
             game->mlx.imgs[0].img = mlx_new_image(game->mlx.ctx, 800, 600);
             game->mlx.imgs[0].width = 800;
             game->mlx.imgs[0].height = 600;
+            if (!game->mlx.imgs[0].img)
+                exit_game(game, "Error\nFailed to create screen buffer", 1);
         }
         else
+        {
             game->mlx.imgs[i].img = mlx_xpm_file_to_image(game->mlx.ctx, paths[i - 1],
                 &game->mlx.imgs[i].width, &game->mlx.imgs[i].height);
-        if (!game->mlx.imgs[i].img)
-            exit_game(game, "Error\nFailed to load texture", 1);
+            if (!game->mlx.imgs[i].img)
+            {
+                ft_putstr_fd("Error\nInvalid XPM file: ", 2);
+                ft_putendl_fd(paths[i - 1], 2);
+                exit_game(game, NULL, 1);
+            }
+        }
         game->mlx.imgs[i].addr = mlx_get_data_addr(game->mlx.imgs[i].img,
                 &game->mlx.imgs[i].bpp,
                 &game->mlx.imgs[i].line_length,
