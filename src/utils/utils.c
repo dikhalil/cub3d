@@ -1,27 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/01 16:20:48 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/27 16:46:32 by dikhalil         ###   ########.fr       */
+/*   Created: 2025/11/27 16:19:23 by dikhalil          #+#    #+#             */
+/*   Updated: 2025/11/27 16:20:09 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char **argv)
+int	is_spaces(char *line)
 {
-    t_game	game;
+    int	i;
 
-    if (argc != 2)
-        exit_game(NULL, "Error\nTry ./cub3d path/to/map.cub", 1);
-    ft_bzero(&game, sizeof(t_game));  // This already zeroes keys!
-    game.map.map_file = argv[1];
-    parser(&game);
-    validator(&game);
-    render(&game);
-    return (0);
+    i = 0;
+    if (!line[i])
+        return (0);
+    while (line[i])
+    {
+        if (line[i] != ' ' && line[i] != '\t')
+            return (0);
+        i++;
+    }
+    return (1);
+}
+
+int ft_strcmp(const char *s1, const char *s2)
+{
+    size_t i;
+
+    i = 0;
+    while (s1[i] && s2[i] && s1[i] == s2[i])
+        i++;
+    return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

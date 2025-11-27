@@ -15,13 +15,21 @@ INCLUDE = -I./include
 
 # Source files
 SRCS =  src/main.c \
-		src/exit.c \
-		src/parser.c \
-		src/validator/flood_fill.c \
-		src/validator/validator_map.c \
-		src/validator/validator_colors.c \
-		src/validator/validator_textures.c \
-		src/validator/validator.c \
+        src/cleanup/exit.c \
+        src/parser/parser.c \
+        src/validator/flood_fill.c \
+        src/validator/validator_map.c \
+        src/validator/validator_colors.c \
+        src/validator/validator_textures.c \
+        src/validator/validator.c \
+        src/render/draw.c \
+        src/render/move.c \
+        src/render/rotate.c \
+        src/render/raycasting.c \
+        src/render/hook.c \
+        src/render/render.c \
+        src/utils/utils.c \
+        src/cleanup/free.c
 
 # Object files
 OBJ_DIR = obj

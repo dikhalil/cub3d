@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/01 16:20:48 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/27 16:46:32 by dikhalil         ###   ########.fr       */
+/*   Created: 2025/11/02 02:42:25 by dikhalil          #+#    #+#             */
+/*   Updated: 2025/11/27 16:32:52 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char **argv)
+void	free_game(t_game *game)
 {
-    t_game	game;
+    if (!game)
+        return;
+    destroy_images(game);
+    destroy_window(game);
+    free_textures(game);
+    free_map_grid(game);
+    free_map_cols(game);
+}
 
-    if (argc != 2)
-        exit_game(NULL, "Error\nTry ./cub3d path/to/map.cub", 1);
-    ft_bzero(&game, sizeof(t_game));  // This already zeroes keys!
-    game.map.map_file = argv[1];
-    parser(&game);
-    validator(&game);
-    render(&game);
-    return (0);
+void	exit_game(t_game *game, char *msg, int code)
+{
+    if (msg)
+        ft_putendl_fd(msg, 2);
+    if (game)
+        free_game(game);
+    exit(code);
 }

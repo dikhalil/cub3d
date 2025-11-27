@@ -6,17 +6,21 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 16:49:45 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/25 22:55:51 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/27 16:18:58 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void check_file_name(char *file)
+static void check_extensions(char *file)
 {
-    if (!file || ft_strlen(file) < 4
-        || ft_strncmp(file + ft_strlen(file) - 4, ".cub", 4))
-        exit_game(NULL, "Error\nMap file must have a .cub extension", 1);
+    size_t len;
+    
+    if (!file)
+        exit_game(NULL, "Error\nNo map file provided", 1);
+    len = ft_strlen(file);
+    if (len < 4 || ft_strcmp(file + len - 4, ".cub") != 0)
+        exit_game(NULL, "Error\nInvalid map file extension. Expected .cub", 1);    
 }
 
 static void count_map_rows(t_map *map)
@@ -82,7 +86,7 @@ static void	read_map(t_game *game)
 
 void parser(t_game *game)
 {
-    check_file_name(game->map.map_file);
+    check_extensions(game->map.map_file);
     count_map_rows(&game->map);
     allocate_map(game);
     read_map(game);
