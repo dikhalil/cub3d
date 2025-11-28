@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 23:10:00 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/28 15:49:09 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/28 15:54:05 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,5 @@ int	mouse_move(int x, int y, t_game *game)
 		draw_game(game);
 	}
 	old_x = x;
-	if (x < 100 || x > WIDTH - 100)
-	{
-		mlx_mouse_move(game->mlx.ctx, game->mlx.win, WIDTH / 2, HEIGHT / 2);
-		old_x = WIDTH / 2;
-	}
 	return (0);
 }
