@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 16:06:29 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/27 22:58:31 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/28 14:44:20 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,6 @@ void	rotate_mouse(t_game *game, double angle);
 
 /*------ mouse ------*/
 int		mouse_move(int x, int y, t_game *game);
-int		mouse_hide(t_game *game);
 
 /*------ hooks ------*/
 int		key_press(int code, t_game *game);
