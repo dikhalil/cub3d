@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 18:59:39 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/09/10 11:59:23 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/28 16:56:46 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
+		return (free_and_return(&leftover));
 	buf = malloc(BUFFER_SIZE + 1);
 	if (!buf)
 		return (NULL);
