@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 16:06:29 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/28 14:44:20 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/28 16:10:11 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 # define WIDTH 800
 # define HEIGHT 600
-# define MOVE_SPEED 0.05      
+# define MOVE_SPEED 0.03     
 # define ROT_SPEED 0.03         
 # define MOUSE_SENSITIVITY 0.001
 # define KEY_W 119
