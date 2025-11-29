@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 23:00:00 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/27 22:59:49 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/29 12:12:37 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	put_pixel(t_game *game, int x, int y, int color)
 
 	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
 		return ;
-	dst = game->mlx.imgs[0].addr + (y * game->mlx.imgs[0].line_length
-			+ x * (game->mlx.imgs[0].bpp / 8));
+	dst = game->mlx.imgs[0].addr + (y * game->mlx.imgs[0].line_length + x
+			* (game->mlx.imgs[0].bpp / 8));
 	*(unsigned int *)dst = color;
 }
 
@@ -64,13 +64,15 @@ void	draw_vertical_line(t_game *game, int x, t_wall *wall)
 	while (y < HEIGHT)
 	{
 		if (y < wall->draw_start)
-			put_pixel(game, x, y, (game->ceiling.r << 16)
-				| (game->ceiling.g << 8) | game->ceiling.b);
+			put_pixel(game, x, y,
+				(game->ceiling.r << 16) | (game->ceiling.g << 8)
+				| game->ceiling.b);
 		else if (y >= wall->draw_start && y <= wall->draw_end)
 			draw_wall_pixel(game, x, y, wall);
 		else
-			put_pixel(game, x, y, (game->floor.r << 16)
-				| (game->floor.g << 8) | game->floor.b);
+			put_pixel(game, x, y,
+				(game->floor.r << 16) | (game->floor.g << 8)
+				| game->floor.b);
 		y++;
 	}
 }

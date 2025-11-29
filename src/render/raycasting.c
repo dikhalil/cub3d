@@ -14,21 +14,21 @@
 
 void	cast_rays(t_game *game)
 {
-    t_ray	ray;
-    t_wall	wall;
-    int		x;
+	t_ray	ray;
+	t_wall	wall;
+	int		x;
 
-    x = 0;
-    while (x < WIDTH)
-    {
-        init_ray(&ray, game, x);
-        set_step_and_side_dist(&ray, game);
-        perform_dda(&ray, game);
-        calculate_wall_distance(&ray);
-        init_wall_data(&wall, &ray, game);
-        select_texture(&wall, &ray);
-        calculate_texture_x(&wall, game);
-        draw_vertical_line(game, x, &wall);
-        x++;
-    }
+	x = 0;
+	while (x < WIDTH)
+	{
+		init_ray(&ray, game, x);
+		set_step_and_side_dist(&ray, game);
+		perform_dda(&ray, game);
+		calculate_wall_distance(&ray);
+		init_wall_data(&wall, &ray, game);
+		select_texture(&wall, &ray);
+		calculate_texture_x(&wall, game);
+		draw_vertical_line(game, x, &wall);
+		x++;
+	}
 }

@@ -20,10 +20,11 @@ int	close_window(t_game *game)
 
 int	mouse_move(int x, int y, t_game *game)
 {
-	static int	old_x = -1;
+	static int	old_x;
 	int			delta_x;
 	double		rotation_angle;
 
+	old_x = -1;
 	(void)y;
 	if (old_x == -1)
 	{

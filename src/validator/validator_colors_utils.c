@@ -59,8 +59,7 @@ void	validate_and_set_rgb(t_game *game, t_color *color, char **rgb)
 	color->g = ft_atoi(rgb[1]);
 	color->b = ft_atoi(rgb[2]);
 	free_split(rgb);
-	if (color->r < 0 || color->r > 255
-		|| color->g < 0 || color->g > 255
+	if (color->r < 0 || color->r > 255 || color->g < 0 || color->g > 255
 		|| color->b < 0 || color->b > 255)
 		exit_game(game, "Error\nColor value out of range", 1);
 	color->set++;

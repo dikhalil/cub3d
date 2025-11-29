@@ -86,4 +86,3 @@ void	validate_colors(t_game *game)
 	if (game->ceiling.set != 1 || game->floor.set != 1)
 		exit_game(game, "Error\nFloor and ceiling colors must set once", 1);
 }
-

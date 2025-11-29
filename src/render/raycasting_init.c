@@ -35,7 +35,8 @@ void	set_step_and_side_dist(t_ray *ray, t_game *game)
 	if (ray->ray_dir_x < 0)
 	{
 		ray->step_x = -1;
-		ray->side_dist_x = (game->player.pos_x - ray->map_x) * ray->delta_dist_x;
+		ray->side_dist_x = (game->player.pos_x - ray->map_x)
+			* ray->delta_dist_x;
 	}
 	else
 	{
@@ -46,7 +47,8 @@ void	set_step_and_side_dist(t_ray *ray, t_game *game)
 	if (ray->ray_dir_y < 0)
 	{
 		ray->step_y = -1;
-		ray->side_dist_y = (game->player.pos_y - ray->map_y) * ray->delta_dist_y;
+		ray->side_dist_y = (game->player.pos_y - ray->map_y)
+			* ray->delta_dist_y;
 	}
 	else
 	{
@@ -72,8 +74,8 @@ void	perform_dda(t_ray *ray, t_game *game)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
-		if (ray->map_y >= 0 && ray->map_y < game->map.rows
-			&& ray->map_x >= 0 && ray->map_x < game->map.cols[ray->map_y])
+		if (ray->map_y >= 0 && ray->map_y < game->map.rows && ray->map_x >= 0
+			&& ray->map_x < game->map.cols[ray->map_y])
 		{
 			if (game->map.grid[ray->map_y][ray->map_x] == '1')
 				ray->hit = 1;

@@ -21,10 +21,9 @@ int	is_texture(char *line)
 		return (0);
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
-	if (ft_strncmp(line + i, "NO", 2) == 0
-		|| ft_strncmp(line + i, "SO", 2) == 0
-		|| ft_strncmp(line + i, "WE", 2) == 0
-		|| ft_strncmp(line + i, "EA", 2) == 0)
+	if (ft_strncmp(line + i, "NO", 2) == 0 || ft_strncmp(line + i, "SO", 2) == 0
+		|| ft_strncmp(line + i, "WE", 2) == 0 || ft_strncmp(line + i, "EA",
+			2) == 0)
 		return (1);
 	return (0);
 }

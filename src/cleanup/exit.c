@@ -14,20 +14,20 @@
 
 void	free_game(t_game *game)
 {
-    if (!game)
-        return;
-    destroy_images(game);
-    destroy_window(game);
-    free_textures(game);
-    free_map_grid(game);
-    free_map_cols(game);
+	if (!game)
+		return ;
+	destroy_images(game);
+	destroy_window(game);
+	free_textures(game);
+	free_map_grid(game);
+	free_map_cols(game);
 }
 
 void	exit_game(t_game *game, char *msg, int code)
 {
-    if (msg)
-        ft_putendl_fd(msg, 2);
-    if (game)
-        free_game(game);
-    exit(code);
+	if (msg)
+		ft_putendl_fd(msg, 2);
+	if (game)
+		free_game(game);
+	exit(code);
 }

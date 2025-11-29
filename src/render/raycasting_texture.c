@@ -42,11 +42,11 @@ int	get_texture_color(t_game *game, int tex_num, int tex_x, int tex_y)
 {
 	char	*pixel;
 
-	if (tex_x < 0 || tex_x >= game->mlx.imgs[tex_num].width
-		|| tex_y < 0 || tex_y >= game->mlx.imgs[tex_num].height)
+	if (tex_x < 0 || tex_x >= game->mlx.imgs[tex_num].width || tex_y < 0
+		|| tex_y >= game->mlx.imgs[tex_num].height)
 		return (0);
-	pixel = game->mlx.imgs[tex_num].addr
-		+ (tex_y * game->mlx.imgs[tex_num].line_length
-			+ tex_x * (game->mlx.imgs[tex_num].bpp / 8));
+	pixel = game->mlx.imgs[tex_num].addr + (tex_y
+			* game->mlx.imgs[tex_num].line_length + tex_x
+			* (game->mlx.imgs[tex_num].bpp / 8));
 	return (*(unsigned int *)pixel);
 }

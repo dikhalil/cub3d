@@ -14,8 +14,8 @@
 
 int	is_map_chr(char c)
 {
-	return (c == '0' || c == '1' || c == 'N' || c == 'S'
-		|| c == 'E' || c == 'W' || c == ' ');
+	return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
+		|| c == ' ');
 }
 
 static void	set_player_direction(t_player *player, char **line, int i, int j)
@@ -59,8 +59,8 @@ static int	is_valid_content(t_player *player, char **line)
 		{
 			if (!is_map_chr(line[i][j]))
 				return (0);
-			if (line[i][j] == 'N' || line[i][j] == 'S'
-				|| line[i][j] == 'E' || line[i][j] == 'W')
+			if (line[i][j] == 'N' || line[i][j] == 'S' || line[i][j] == 'E'
+				|| line[i][j] == 'W')
 			{
 				count++;
 				set_player_direction(player, line, i, j);

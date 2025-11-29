@@ -74,4 +74,3 @@ int	flood_fill(char **map, int x, int y, int rows)
 		return (0);
 	return (1);
 }
-

@@ -63,9 +63,8 @@ void	set_texture_path(t_game *game, char *line)
 		exit_game(game, "Error\nMalloc failed for texture path", 1);
 	if (**texture_path == '\0')
 		exit_game(game, "Error\nEmpty texture path", 1);
-	if (ft_strlen(*texture_path) < 4
-		|| ft_strncmp(*texture_path + ft_strlen(*texture_path) - 4,
-			".xpm", 4))
+	if (ft_strlen(*texture_path) < 4 || ft_strncmp(*texture_path
+			+ ft_strlen(*texture_path) - 4, ".xpm", 4))
 		exit_game(game, "Error\nTexture file must have .xpm extension", 1);
 	check_texture_file(game, *texture_path);
 }
