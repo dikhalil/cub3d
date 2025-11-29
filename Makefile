@@ -45,12 +45,12 @@ OBJS = $(patsubst src/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 # Default target
 all: $(NAME)
 
-# Build pipex binary (regular)
+# Build Cub3D binary
 $(NAME): $(OBJS) $(LIBFT) $(MLX)
 	$(CC) $(CFLAGS) $(OBJS) -L $(LIBFT_PATH) -lft $(CMLXFLAG) -o $(NAME)
 
 
-# Build libft library if needed
+# Build libft library
 $(LIBFT):
 	make -C $(LIBFT_PATH) all
 
@@ -59,15 +59,15 @@ $(OBJ_DIR)/%.o: src/%.c
 	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
-# Clean object files
+# Clean object folders
 clean:
 	make -C $(LIBFT_PATH) clean
-	rm -f $(OBJS)
+	rm -rf $(OBJ_DIR)
 
-# Full clean: remove objects and binary
+# Full clean: remove object folders and binary
 fclean: clean
 	make -C $(LIBFT_PATH) fclean
-	rm -f $(NAME)
+	rm -rf $(NAME)
 
 # Rebuild everything
 re: fclean all

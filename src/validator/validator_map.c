@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 02:47:59 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/28 17:12:25 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/29 16:12:48 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,22 @@ static void	set_player_direction(t_player *player, char **line, int i, int j)
 {
 	player->pos_x = j + 0.5;
 	player->pos_y = i + 0.5;
-	if (line[i][j] == 'N')
-	{
-		player->dir_y = -1;
-		player->plane_x = 0.66;
-	}
-	else if (line[i][j] == 'S')
+	if (line[i][j] == 'W')
 	{
 		player->dir_y = 1;
 		player->plane_x = -0.66;
 	}
 	else if (line[i][j] == 'E')
 	{
+		player->dir_y = -1;
+		player->plane_x = 0.66;
+	}
+	else if (line[i][j] == 'S')
+	{
 		player->dir_x = 1;
 		player->plane_y = 0.66;
 	}
-	else if (line[i][j] == 'W')
+	else if (line[i][j] == 'N')
 	{
 		player->dir_x = -1;
 		player->plane_y = -0.66;
@@ -91,6 +91,17 @@ static int	is_closed(t_game *game, char **line)
 	}
 	free_map_line(copy);
 	return (1);
+}
+static void print_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		printf("%s\n", map[i]);
+		i++;
+	}
 }
 
 void	validate_map(t_game *game)

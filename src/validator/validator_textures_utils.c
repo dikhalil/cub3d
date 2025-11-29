@@ -35,10 +35,6 @@ void	check_texture_file(t_game *game, char *path)
 {
 	int	fd;
 
-	if (access(path, F_OK) == -1)
-		exit_game(game, "Error\nTexture file does not exist", 1);
-	if (access(path, R_OK) == -1)
-		exit_game(game, "Error\nTexture file is not readable", 1);
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		exit_game(game, "Error\nCannot open texture file", 1);

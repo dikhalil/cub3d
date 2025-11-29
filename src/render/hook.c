@@ -16,7 +16,7 @@ int	key_press(int code, t_game *game)
 {
 	if (code == KEY_W || code == KEY_UP)
 		game->keys.w = 1;
-	else if (code == KEY_S || code == KEY_DOWN)
+	else if (code == KEY_S)
 		game->keys.s = 1;
 	else if (code == KEY_A)
 		game->keys.a = 1;
@@ -26,7 +26,7 @@ int	key_press(int code, t_game *game)
 		game->keys.left = 1;
 	else if (code == KEY_RIGHT)
 		game->keys.right = 1;
-	else if (code == KEY_ESC)
+	else if (code == KEY_ESC || code == KEY_Q)
 		exit_game(game, "Game closed", 0);
 	return (0);
 }
