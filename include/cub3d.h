@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 16:06:29 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/30 16:43:43 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/30 17:39:01 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ int				is_spaces(char *line);
 /*------ parser ------*/
 void			parser(t_game *game);
 void			check_extensions(char *file);
-void			process_line(t_game *game, char *line, int i, int fd);
+void			store_map_line(t_game *game, char *line, int i, int fd);
 
 /*------ validator ------*/
 int				is_texture(char *line);

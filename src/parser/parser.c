@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 16:49:45 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/30 17:24:08 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/30 17:39:01 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	read_map(t_game *game)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		process_line(game, line, i, fd);
+		store_map_line(game, line, i, fd);
 		i++;
 	}
 	game->map.grid[i] = NULL;

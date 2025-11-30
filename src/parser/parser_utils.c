@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 17:02:00 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/30 17:24:27 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/30 17:39:01 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	check_extensions(char *file)
 		exit_game(NULL, "Error\nInvalid map file extension. Expected .cub", 1);
 }
 
-void	process_line(t_game *game, char *line, int i, int fd)
+void	store_map_line(t_game *game, char *line, int i, int fd)
 {
 	game->map.grid[i] = ft_strtrim(line, "\n");
 	free(line);
