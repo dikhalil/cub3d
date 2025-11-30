@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 02:47:59 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/29 16:12:48 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/30 17:25:16 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ static int	is_valid_content(t_player *player, char **line)
 		{
 			if (!is_map_chr(line[i][j]))
 				return (0);
-			if (line[i][j] == 'N' || line[i][j] == 'S' || line[i][j] == 'E'
-				|| line[i][j] == 'W')
+			if (line[i][j] == 'N' || line[i][j] == 'S'
+				|| line[i][j] == 'E' || line[i][j] == 'W')
 			{
 				count++;
 				set_player_direction(player, line, i, j);
@@ -73,7 +73,7 @@ static int	is_valid_content(t_player *player, char **line)
 	return (count);
 }
 
-static int	is_closed(t_game *game, char **line)
+static int	is_closed(t_game *game, char **line, int i)
 {
 	char	**copy;
 	int		rows;
@@ -89,19 +89,13 @@ static int	is_closed(t_game *game, char **line)
 		free_map_line(copy);
 		return (0);
 	}
+	if (!check_surrounded(line, game->map.rows - i))
+	{
+		free_map_line(copy);
+		return (0);
+	}
 	free_map_line(copy);
 	return (1);
-}
-static void print_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		printf("%s\n", map[i]);
-		i++;
-	}
 }
 
 void	validate_map(t_game *game)
@@ -117,11 +111,12 @@ void	validate_map(t_game *game)
 		i++;
 	if (!line[i])
 		exit_game(game, "Error\nMap is missing", 1);
+	game->map.map_start_row = i;
 	player_count = is_valid_content(&game->player, line + i);
 	if (player_count == 0)
 		exit_game(game, "Error\nInvalid content in map", 1);
 	if (player_count != 1)
 		exit_game(game, "Error\nMap must contain one player", 1);
-	if (!is_closed(game, line + i))
-		exit_game(game, "Error\nMap must be enclosed/surrounded by walls", 1);
+	if (!is_closed(game, line + i, i))
+		exit_game(game, "Error\nMap must be enclosed by walls", 1);
 }

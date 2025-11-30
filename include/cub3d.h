@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 16:06:29 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/29 12:05:45 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/30 16:43:43 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "../libft/libft.h"
 # include <fcntl.h>
 # include <math.h>
-# include <mlx.h>
+# include "../minilibx-linux/mlx.h"
 # include <stdio.h>
 # include <stdlib.h>
 
@@ -96,6 +96,7 @@ typedef struct s_map
 	char		**grid;
 	int			rows;
 	int			*cols;
+	int			map_start_row;
 }				t_map;
 
 typedef struct s_img
@@ -155,13 +156,16 @@ int				is_color_chr(char *line);
 void			validate_colors(t_game *game);
 int				is_number(char **str);
 int				count_commas(char *str);
-int				skip_to_rgb(char *line);
 void			validate_and_set_rgb(t_game *game, t_color *color, char **rgb);
 int				validate_single_number(char *str);
 int				is_map_chr(char c);
 void			free_map_line(char **map);
 char			**copy_map(char **map, int rows);
 int				flood_fill(char **map, int x, int y, int rows);
+int				is_valid_cell(char **map, int x, int y, int rows);
+int				check_adjacent(char **line, int x, int y, int rows);
+int				check_diagonals(char **line, int x, int y, int rows);
+int				check_surrounded(char **line, int rows);
 void			validate_map(t_game *game);
 void			validator(t_game *game);
 

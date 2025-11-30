@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 23:33:15 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/28 14:51:45 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/30 17:23:52 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,16 @@ static int	is_valid_position(t_game *game, double x, double y)
 {
 	int	map_x;
 	int	map_y;
+	int	actual_row;
 
 	map_x = (int)x;
 	map_y = (int)y;
-	if (map_y < 0 || map_y >= game->map.rows)
+	actual_row = map_y + game->map.map_start_row;
+	if (map_y < 0 || actual_row >= game->map.rows)
 		return (0);
-	if (map_x < 0 || map_x >= game->map.cols[map_y])
+	if (map_x < 0 || map_x >= game->map.cols[actual_row])
 		return (0);
-	if (game->map.grid[map_y][map_x] == '1')
+	if (game->map.grid[actual_row][map_x] == '1')
 		return (0);
 	return (1);
 }

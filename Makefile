@@ -20,6 +20,7 @@ SRCS =  src/main.c \
         src/parser/parser_utils.c \
         src/validator/flood_fill.c \
         src/validator/validator_map.c \
+        src/validator/validator_map_utils.c \
         src/validator/validator_colors.c \
         src/validator/validator_colors_utils.c \
         src/validator/validator_textures.c \

@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 23:00:00 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/27 22:58:31 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/11/30 17:23:13 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void	set_step_and_side_dist(t_ray *ray, t_game *game)
 
 void	perform_dda(t_ray *ray, t_game *game)
 {
+	int	actual_row;
+
 	while (ray->hit == 0)
 	{
 		if (ray->side_dist_x < ray->side_dist_y)
@@ -74,13 +76,13 @@ void	perform_dda(t_ray *ray, t_game *game)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
-		if (ray->map_y >= 0 && ray->map_y < game->map.rows && ray->map_x >= 0
-			&& ray->map_x < game->map.cols[ray->map_y])
-		{
-			if (game->map.grid[ray->map_y][ray->map_x] == '1')
-				ray->hit = 1;
-		}
-		else
+		actual_row = ray->map_y + game->map.map_start_row;
+		if (ray->map_y >= 0 && actual_row < game->map.rows
+			&& ray->map_x >= 0 && ray->map_x < game->map.cols[actual_row]
+			&& game->map.grid[actual_row][ray->map_x] == '1')
+			ray->hit = 1;
+		else if (ray->map_y < 0 || actual_row >= game->map.rows
+			|| ray->map_x < 0 || ray->map_x >= game->map.cols[actual_row])
 			ray->hit = 1;
 	}
 }
