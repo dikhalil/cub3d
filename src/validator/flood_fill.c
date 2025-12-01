@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 16:08:27 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/30 17:24:58 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/12/01 15:09:24 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	flood_fill(char **map, int x, int y, int rows)
 		return (0);
 	if (map[y][x] == '1' || map[y][x] == 'v')
 		return (1);
-	if (map[y][x] == ' ')
+	if (map[y][x] == ' ' || map[y][x] == '\t')
 		return (0);
 	map[y][x] = 'v';
 	if (!flood_fill(map, x + 1, y, rows))

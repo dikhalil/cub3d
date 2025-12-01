@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 02:47:59 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/30 17:25:16 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/12/01 15:01:39 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	is_map_chr(char c)
 {
 	return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
-		|| c == ' ');
+		|| c == ' ' || c == '\t');
 }
 
 static void	set_player_direction(t_player *player, char **line, int i, int j)

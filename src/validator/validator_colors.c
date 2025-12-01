@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 03:01:36 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/12/01 14:43:07 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/12/01 15:13:07 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	set_color_value(t_game *game, char *line)
 	validate_and_set_rgb(game, color, rgb);
 }
 
-static void	process_color_line(t_game *game, char *line, int *map_start)
+static void	parse_color_line(t_game *game, char *line, int *map_start)
 {
 	if (is_color_chr(line))
 	{
@@ -88,7 +88,7 @@ void	validate_colors(t_game *game)
 			i++;
 			continue ;
 		}
-		process_color_line(game, line[i], &map_start);
+		parse_color_line(game, line[i], &map_start);
 		i++;
 	}
 	if (game->ceiling.set != 1 || game->floor.set != 1)
