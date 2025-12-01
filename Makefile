@@ -1,7 +1,7 @@
 # Compiler and flags
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-NAME = cub3d
+NAME = cub3D
 
 # Libft
 LIBFT_PATH = ./libft
