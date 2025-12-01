@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 03:01:36 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/30 17:25:06 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/12/01 14:43:07 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void	set_color_value(t_game *game, char *line)
 {
 	t_color	*color;
 	char	**rgb;
+	char	*trimmed;
 	int		i;
 
 	i = 0;
@@ -42,11 +43,18 @@ static void	set_color_value(t_game *game, char *line)
 	i++;
 	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
 		i++;
-	if (count_commas(line + i) != 2)
+	trimmed = ft_strtrim(line + i, " \t\n");
+	if (!trimmed)
+		exit_game(game, "Error\nMalloc failed for colors", 1);
+	if (count_commas(trimmed) != 2)
+	{
+		free(trimmed);
 		exit_game(game, "Error\nInvalid color format", 1);
-	rgb = ft_split(line + i, ',');
+	}
+	rgb = ft_split(trimmed, ',');
+	free(trimmed);
 	if (!rgb)
-		exit_game(game, "Error\nMalloc faild for colors", 1);
+		exit_game(game, "Error\nMalloc failed for colors", 1);
 	validate_and_set_rgb(game, color, rgb);
 }
 
