@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 16:06:29 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/30 17:39:01 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/12/01 20:03:22 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "../libft/libft.h"
 # include <fcntl.h>
 # include <math.h>
-# include "../minilibx-linux/mlx.h"
+# include <mlx.h>
 # include <stdio.h>
 # include <stdlib.h>
 
@@ -24,7 +24,7 @@
 # define HEIGHT 600
 # define MOVE_SPEED 0.03
 # define ROT_SPEED 0.03
-# define MOUSE_SENSITIVITY 0.001
+# define MOUSE_SENSITIVITY 0.01
 # define KEY_W 119
 # define KEY_A 97
 # define KEY_S 115

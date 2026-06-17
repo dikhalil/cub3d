@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 23:00:00 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/30 17:23:40 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/12/01 19:50:37 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,13 @@ void	draw_vertical_line(t_game *game, int x, t_wall *wall)
 	{
 		if (y < wall->draw_start)
 			put_pixel(game, x, y,
-				(game->ceiling.r << 16) | (game->ceiling.g << 8)
-				| game->ceiling.b);
+				(game->ceiling.r << 16)
+				| (game->ceiling.g << 8) | game->ceiling.b);
 		else if (y >= wall->draw_start && y <= wall->draw_end)
 			draw_wall_pixel(game, x, y, wall);
 		else
 			put_pixel(game, x, y,
-				(game->floor.r << 16) | (game->floor.g << 8)
-				| game->floor.b);
+				(game->floor.r << 16) | (game->floor.g << 8) | game->floor.b);
 		y++;
 	}
 }

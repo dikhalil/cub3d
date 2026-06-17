@@ -16,7 +16,7 @@ int	key_press(int code, t_game *game)
 {
 	if (code == KEY_W || code == KEY_UP)
 		game->keys.w = 1;
-	else if (code == KEY_S)
+	else if (code == KEY_S || code == KEY_DOWN)
 		game->keys.s = 1;
 	else if (code == KEY_A)
 		game->keys.a = 1;

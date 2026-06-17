@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 23:10:00 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/11/30 17:23:46 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/12/01 19:44:10 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	mouse_move(int x, int y, t_game *game)
 	int			delta_x;
 	double		rotation_angle;
 
-	old_x = -1;
 	(void)y;
 	if (old_x == -1)
 	{
@@ -35,7 +34,7 @@ int	mouse_move(int x, int y, t_game *game)
 	if (delta_x != 0)
 	{
 		rotation_angle = delta_x * MOUSE_SENSITIVITY;
-		rotate_mouse(game, -rotation_angle);
+		rotate_mouse(game, rotation_angle);
 		draw_game(game);
 	}
 	old_x = x;

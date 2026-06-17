@@ -8,10 +8,13 @@ LIBFT_PATH = ./libft
 LIBFT = $(LIBFT_PATH)/libft.a
 
 # MLX
-CMLXFLAG = -L./minilibx-linux -lmlx -lXext -lX11 -lm -lbsd
+MLX_DIR = ./minilibx-linux
+MLX = $(MLX_DIR)/libmlx.a
+CMLXFLAG = -lXext -lX11 -lm -lbsd
+LMLXFLAG = -L $(MLX_DIR) -lmlx
 
 # Include
-INCLUDE = -I./include
+INCLUDE = -I./include -I$(MLX_DIR)
 
 # Source files
 SRCS =  src/main.c \
@@ -47,8 +50,16 @@ OBJS = $(patsubst src/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 all: $(NAME)
 
 # Build Cub3D binary
+$(MLX_DIR)/mlx.h:
+	@if [ ! -d "$(MLX_DIR)" ]; then \
+		git clone https://github.com/42Paris/minilibx-linux.git $(MLX_DIR); \
+	fi
+
+$(MLX): $(MLX_DIR)/mlx.h
+	@make -C $(MLX_DIR)
+
 $(NAME): $(OBJS) $(LIBFT) $(MLX)
-	$(CC) $(CFLAGS) $(OBJS) -L $(LIBFT_PATH) -lft $(CMLXFLAG) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -L $(LIBFT_PATH) -lft $(LMLXFLAG) $(CMLXFLAG) -o $(NAME)
 
 
 # Build libft library
@@ -56,7 +67,7 @@ $(LIBFT):
 	make -C $(LIBFT_PATH) all
 
 # Compile .c to .o
-$(OBJ_DIR)/%.o: src/%.c
+$(OBJ_DIR)/%.o: src/%.c $(MLX_DIR)/mlx.h
 	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
@@ -64,11 +75,13 @@ $(OBJ_DIR)/%.o: src/%.c
 clean:
 	make -C $(LIBFT_PATH) clean
 	rm -rf $(OBJ_DIR)
+	@if [ -d "$(MLX_DIR)" ]; then make -C $(MLX_DIR) clean; fi
 
 # Full clean: remove object folders and binary
 fclean: clean
 	make -C $(LIBFT_PATH) fclean
 	rm -rf $(NAME)
+	@if [ -d "$(MLX_DIR)" ]; then rm -rf $(MLX_DIR); fi
 
 # Rebuild everything
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: dikhalil <dikhalil@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 02:47:59 by dikhalil          #+#    #+#             */
-/*   Updated: 2025/12/01 15:01:39 by dikhalil         ###   ########.fr       */
+/*   Updated: 2025/12/01 19:36:16 by dikhalil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,22 @@ static void	set_player_direction(t_player *player, char **line, int i, int j)
 {
 	player->pos_x = j + 0.5;
 	player->pos_y = i + 0.5;
-	if (line[i][j] == 'W')
+	if (line[i][j] == 'S')
 	{
 		player->dir_y = 1;
 		player->plane_x = -0.66;
 	}
-	else if (line[i][j] == 'E')
+	else if (line[i][j] == 'N')
 	{
 		player->dir_y = -1;
 		player->plane_x = 0.66;
 	}
-	else if (line[i][j] == 'S')
+	else if (line[i][j] == 'E')
 	{
 		player->dir_x = 1;
 		player->plane_y = 0.66;
 	}
-	else if (line[i][j] == 'N')
+	else if (line[i][j] == 'W')
 	{
 		player->dir_x = -1;
 		player->plane_y = -0.66;
@@ -59,8 +59,8 @@ static int	is_valid_content(t_player *player, char **line)
 		{
 			if (!is_map_chr(line[i][j]))
 				return (0);
-			if (line[i][j] == 'N' || line[i][j] == 'S'
-				|| line[i][j] == 'E' || line[i][j] == 'W')
+			if (line[i][j] == 'N' || line[i][j] == 'S' || line[i][j] == 'E'
+				|| line[i][j] == 'W')
 			{
 				count++;
 				set_player_direction(player, line, i, j);
