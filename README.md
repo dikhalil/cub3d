@@ -8,7 +8,6 @@ Project from the [42](https://42.fr) common core curriculum.
 cub3D parses a `.cub` configuration map file and renders a real-time 3D first-person view using **DDA (Digital Differential Analyzer)** raycasting. The player can navigate a maze-like environment with textured walls, colored floor/ceiling, and mouse-look controls.
 
 ## Features
-git@github.com:dikhalil/philo.git
 - Raycasting engine with DDA algorithm
 - Textured walls (4-directional: north, south, east, west)
 - Customizable floor and ceiling colors (RGB)
